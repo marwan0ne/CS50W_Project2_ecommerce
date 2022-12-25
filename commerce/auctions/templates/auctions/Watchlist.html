@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+{% for watch in Watched%}
+    <form action="{% url 'auctions:visit' watch.item.id %}" method="GET" >
+        {% csrf_token %}
+        <button type="sumbit" class = "btn btn-link" >{{watch.item.title}}</button>
+    </form>
+{%endfor%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

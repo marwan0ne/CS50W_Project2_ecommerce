@@ -1,0 +1,15 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    {% for info in infos %}
+    <div>
+        <form action="{% url 'auctions:category_list' info %}" method ="get">
+            {% csrf_token %}
+            <input type="submit" value = "{{info}}" id="categories">
+        </form>
+    </div>
+    {% endfor%}
+</div>
+
+{% endblock%}

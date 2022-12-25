@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+    <h2>Add New Entry</h2>
+    <div class="Entry">
+        <form action="{% url 'auctions:create' %}" method ="post">
+            {% csrf_token %}
+            
+                {% for field in form  %}
+                <div >
+                    <b>{{ field.label_tag }}</b><br>  {{ field }} <br>
+                 
+                {% endfor %}
+              
+            <input type = "submit" value="Create" class ="bid">
+          </div>
+    </div>
+
+    </form>
+{% endblock %}

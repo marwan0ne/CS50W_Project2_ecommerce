@@ -1,0 +1,107 @@
+body {
+    padding: 10px;
+}
+.form{
+    align-items: center;
+    width: 700px;
+}
+
+h2{
+    font-weight: bold;
+    text-align: center;
+}
+.lists{
+    
+    border: thin solid gray;
+    padding: 20px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+img{
+    padding-right:25px;
+}
+.image_index{
+    width:450px;
+    height: 350px;
+    border-style:none;
+    padding-bottom: 10px;
+}
+p{
+    padding-bottom: 2px;
+}
+.head{
+    position: absolute; top: 5px;
+    
+}
+#watchlist{
+    width: 65px;
+    height: 20px;
+    background-color: rgb(132, 135, 139);
+    color:white;
+    border:none;
+    border-radius: 8px;
+    font-size: small;
+}
+#watchlist:focus{
+    color:#FFFF00;
+}
+.user{
+    color:rgb(0, 68, 255);
+    background: none;
+}
+.price{
+    font-size: large;
+    font-weight: bold;
+}
+.title{
+    font-size: medium;
+}
+.bid{
+    background-color: rgb(56, 84, 161); 
+}
+.auction{
+    background-color: red;
+}
+.bid,.auction{
+   margin-top: 10px;
+   
+   color:aliceblue;
+   border-radius: 5px;
+}
+.Entry{
+    text-align: center;
+}
+.index{
+    text-align: center;
+    border:solid;
+}
+
+.comments{
+    border: thin solid rgb(230, 227, 227);
+    padding: 7px;
+    display: flex;
+    align-items: center;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.container> div{
+    background-color: rgb(56, 84, 161);
+    font-size: 20px;
+    margin: 20px;
+    padding: 20px;
+    width: 200px;
+    
+}
+
+#categories{
+    text-align: center;
+    border:none;
+    color:aliceblue;
+    background-color: rgb(56, 84, 161);
+}
+.container>div:hover{
+    box-shadow: 5px 5px 2.5px #3d3d3d;
+}

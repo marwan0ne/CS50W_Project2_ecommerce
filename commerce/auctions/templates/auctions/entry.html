@@ -1,0 +1,101 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div>
+    {% if less %}
+        <div class="alert alert-danger" role="alert">
+            Please enter a higher bid.
+        </div>
+    {%endif%}
+    {% if more %}
+    <div class="alert alert-success" role="alert">
+        You are the highest bider.  
+    </div>
+    {% endif %}
+    <br>
+    <h1>
+        <strong>Listing:{{list.title}}</strong>
+    </h1>
+    <p>
+    {% if user.is_authenticated %}
+    <form action="{% url 'auctions:addtowatchlist' list.id %}" method ="post">
+        {% csrf_token %}
+        <input type="submit"  value ="Watchlist" id="watchlist">
+    </form>
+    </p>
+    {% endif %}
+</div>
+<div>
+{% if list.image%}
+    <img src = "{{ list.image}} " atl = "{{ list.title }}"  class="image_index" >
+  {% else %}
+  <img src = 'https://www.ncenet.com/wp-content/uploads/2020/04/no-image-png-2.png' atl = "{{ list.title }}" width='450' height="350" p>
+  {% endif %}
+</div>
+<div>
+    <p class="title"><strong>{{list.title}}</strong></p>
+    <p class="price">{{list.price}}$</p>
+    {% if user.is_authenticated %}
+        <p>({{numberofbids }}) bids have placed.</p>
+
+    {% if list.active %}
+
+            <form action="{% url 'auctions:biding' list.id %}" method ="post">
+                {% csrf_token %}
+                {{form}}<br>
+                <input type="submit"  value ="Place a bid" class="bid">
+            </form>
+            {% if request.user == list.creator%}
+            <form action="{% url 'auctions:deactivate' list.id %}" method ="post">
+                {% csrf_token %}
+                <input type="submit"  value ="Close auction" class="auction">
+            </form>
+            {% endif %}
+    {%else%}
+
+                {% if bid.user == request.user%}
+                    <div class="alert alert-success" role="alert">
+                        You won the auction.  
+                    </div>
+    
+                {% else %}
+                    <div class="alert alert-danger" role="alert">
+                        You lost the auction.  
+                    </div>
+                {% endif %}
+        {% endif %}
+    {% endif %}
+</div>
+<div>
+    <p><h1>Details</h1></p>
+    <ul>
+        <li><strong>Listed By:</strong><mark class="user">{{list.creator}}</mark></li>
+        <li><strong>Category:</strong> {{list.category}}</li>
+        {% if list.description %}
+        <li><strong>Description:</strong> {{list.description}}</li>
+        {% endif %}
+    </ul>
+</div>
+{% if user.is_authenticated %}
+    <div>
+        <p><h1>Comments</h1></p>
+        {% if comments %}
+            {% for commen in comments%}
+            <div class="comments">
+            <strong>{{commen.user}} </strong>  | {{commen.comment}}
+            </div>
+            {% endfor %}
+        {% else %}
+            <h5>
+                Be The first one to comment.
+            </h5>
+        {% endif %}
+        <form action="{% url 'auctions:comment' list.id %}" method ="post">
+            {% csrf_token %}
+            {{comment}}
+            <input type="submit"  value ="comment" class="bid">
+        </form>
+
+    </div>
+{% endif %}
+{% endblock %}

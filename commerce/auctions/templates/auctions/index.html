@@ -1,0 +1,38 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h1>Active Listings</h1>
+
+{% for list in lists %}
+  {% if list.active %}
+ <div class="lists">
+   
+    <div class ="image-border">
+        {% if list.image %}
+        <form action="{% url 'auctions:visit' list.id %}" method="get" >
+          {% csrf_token %}
+          <input type="image" src="{{ list.image}}" atl = "{{ list.title }}" class="image_index"></input>
+        </form>
+          
+        {% else %}
+        <form action="{% url 'auctions:visit' list.id %}" method="get" >
+          {% csrf_token %}
+          <input type ="image" src = 'https://www.ncenet.com/wp-content/uploads/2020/04/no-image-png-2.png' atl = "{{ list.title }}" class="image_index"></input>
+        </form>
+      
+        {% endif %}
+  </div>
+    <div>
+      <p class="head"><h4><strong>{{list.title}}</strong></h4></p>
+        <p><strong>Price: </strong>{{list.price}}$</p> 
+        <p>{{list.description }}</p>
+        <p id="date">Created {{list.date}}</p>
+    
+    </div>
+    {% endif %}
+ </div>
+ <br>
+{% endfor %}
+
+  
+{% endblock %}
